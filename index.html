@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Marrakech Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #map {
+      height: 100%;
+      width: 100%;
+      min-height: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([31.6295, -7.9811], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const places = [
+      { name: "Jemaa el-Fna", lat: 31.6258, lng: -7.9891 },
+      { name: "Koutoubia Mosque", lat: 31.6225, lng: -7.9935 },
+      { name: "Bahia Palace", lat: 31.6206, lng: -7.9809 },
+      { name: "Saadian Tombs", lat: 31.6167, lng: -7.9893 },
+      { name: "Majorelle Garden", lat: 31.6423, lng: -7.9960 },
+      { name: "YSL Museum", lat: 31.6428, lng: -7.9952 },
+      { name: "Marrakech Museum", lat: 31.6315, lng: -7.9843 },
+      { name: "Ben Youssef Madrasa", lat: 31.6330, lng: -7.9836 },
+      { name: "Menara Airport", lat: 31.6069, lng: -8.0363 },
+      { name: "Train Station", lat: 31.6346, lng: -8.0112 },
+      { name: "Currency Exchange – Hôtel Ali", lat: 31.6255, lng: -7.9923 }
+    ];
+
+    places.forEach(place => {
+      L.marker([place.lat, place.lng])
+        .addTo(map)
+        .bindPopup(`<strong>${place.name}</strong>`);
+    });
+  </script>
+</body>
+</html>
